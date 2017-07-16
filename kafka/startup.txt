@@ -1,0 +1,28 @@
+# start
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+
+
+# details
+
+# start zoo keeper with default config
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# start kafka
+bin/kafka-server-start.sh config/server.properties
+
+# create a topic
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test4
+
+# delete topic
+bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic test
+
+# list topics
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+# send message, start console producer and send messages
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test1
+
+# recieve messages, start console consumer and listen for messages
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
